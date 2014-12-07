@@ -74,7 +74,7 @@ int main(void)
 		int count = 0;
 
 		// index of the first unsatisfied clause, or -1 if all sat
-		int first_unsat = (evaluate_eq(equation, 3 * N, vars));
+		int first_unsat = (evaluate_eq(equation, 9 * N, vars));
 
 		// actual algorithm YAY
 		while((first_unsat != -1) && (count < 3 * N))
@@ -84,13 +84,13 @@ int main(void)
 			switch (a_or_b_or_c)
 			{
 				case 0:
-					vars[equation[first_unsat].a.index] *= !vars[equation[first_unsat].a.index]; 
+					vars[equation[first_unsat].a.index] = !vars[equation[first_unsat].a.index]; 
 					break;
 				case 1:
-					vars[equation[first_unsat].b.index] *= !vars[equation[first_unsat].b.index]; 
+					vars[equation[first_unsat].b.index] = !vars[equation[first_unsat].b.index]; 
 					break;
 				default:
-					vars[equation[first_unsat].c.index] *= !vars[equation[first_unsat].c.index]; 
+					vars[equation[first_unsat].c.index] = !vars[equation[first_unsat].c.index]; 
 			}
 			first_unsat = evaluate_eq(equation, 3 * N, vars);
 			count++;
